@@ -3,6 +3,7 @@ import type { Wish } from '~/types'
 import WishCards from './WishCards.vue'
 import WishForm from './WishForm.vue'
 import WishFlower from './WishFlower.vue'
+const wishes = ref<Wish[]>([])
 
 const fetchWishes = async (): Promise<void> => {
   const response = await useFetch<{ datum: Wish[] }>(`/api/wishes`, {
@@ -10,7 +11,6 @@ const fetchWishes = async (): Promise<void> => {
   })
   wishes.value = response.data.value?.datum ?? []
 }
-const wishes = ref<Wish[]>([])
 
 fetchWishes()
 </script>

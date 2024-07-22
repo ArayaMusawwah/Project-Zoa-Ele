@@ -1,32 +1,37 @@
 <script setup lang="ts">
 import axios from 'axios'
 import TemplateInfo from './TemplateInfo.vue'
-import Swal from 'sweetalert2'
+import { queryParamsEncoder, toast } from '~/lib/utils'
+
+const props = defineProps<{
+  fetchGuests: () => void
+}>()
 
 const namaTamu = ref('')
 const template = ref('')
 
-const isLoading = ref(false)
 const isEditing = ref(false)
+const isLoading = ref(false)
 
-const config = useRuntimeConfig()
-
-const handleCreateName = async () => {
+const handleCreateGuest = async () => {
   isLoading.value = true
   const data = {
     name: namaTamu.value,
     isCompleted: false,
-    link: `${config.app.baseURL}/?to=${namaTamu.value}`,
+    link: queryParamsEncoder(namaTamu.value),
     date: new Date()
   }
 
   try {
     await axios.post('/api/guests/create', data).then(() => {
-      Swal.fire({
+      toast.fire({
         icon: 'success',
-        title: 'Terima kasih',
-        text: 'Doa restu Anda sudah disimpan'
+        title: `${data.name} telah ditambahkan`
       })
+
+      namaTamu.value = ''
+
+      props.fetchGuests()
     })
   } catch (error) {
     console.error('Error creating template:', error)
@@ -53,7 +58,7 @@ const handleCreateTemplate = () => {
 
 <template>
   <div>
-    <form class="flex flex-col gap-3" @submit.prevent="handleCreateName">
+    <form class="flex flex-col gap-3" @submit.prevent="handleCreateGuest">
       <input
         type="text"
         placeholder="Nama Tamu"

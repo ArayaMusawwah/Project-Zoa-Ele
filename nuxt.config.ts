@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   css: ['daisyui/dist/full.css'],
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
   runtimeConfig: {
-    currentUrl: 'http://localhost:3000'
+    currentUrl: process.env.CURRENT_URL || 'http://localhost:3000',
+    public: {
+      currentUrl: process.env.CURRENT_URL || 'http://localhost:3000'
+    }
   }
 })

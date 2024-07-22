@@ -2,24 +2,12 @@
 import { DATA } from '~/constant'
 import { BIconCopy } from 'bootstrap-icons-vue'
 import copy from 'copy-to-clipboard'
-import Swal from 'sweetalert2'
 import GiftFlower from './GiftFlower.vue'
-
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'bottom-end',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.onmouseenter = Swal.stopTimer
-    toast.onmouseleave = Swal.resumeTimer
-  }
-})
+import { toast } from '~/lib/utils'
 
 const handleCopy = (noRek: string) => {
   copy(noRek)
-  Toast.fire({
+  toast.fire({
     icon: 'success',
     title: 'Nomer Rekening berhasil di salin'
   })
