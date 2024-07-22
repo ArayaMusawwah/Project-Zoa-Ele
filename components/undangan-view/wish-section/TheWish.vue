@@ -15,7 +15,7 @@ fetchWishes()
 </script>
 
 <template>
-  <section class="sub-container mx-auto max-w-xl py-10">
+  <section class="sub-container mx-auto max-w-xl py-10 pb-20">
     <h1
       class="text-center font-trajan text-3xl font-bold uppercase italic tracking-wider text-main-text"
     >

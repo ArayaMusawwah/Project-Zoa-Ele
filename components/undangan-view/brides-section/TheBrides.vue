@@ -30,10 +30,10 @@ import BridesFlower from './BridesFlower.vue'
         :nums="'kedua'"
       />
 
-      <div className="mx-auto my-2 flex w-96 max-w-[150px] items-center space-x-4 sm:my-5">
-        <span className="bg block h-[2px] w-full bg-black" />
-        <span className="font-sacramento text-5xl">&amp;</span>
-        <span className="bg block h-[2px] w-full bg-black" />
+      <div class="flex items-center justify-center gap-8">
+        <p class="inline h-[2px] w-full bg-black" />
+        <p class="inline font-sacramento text-5xl text-black">&amp;</p>
+        <p class="inline h-[2px] w-full bg-black" />
       </div>
 
       <BridesInfo

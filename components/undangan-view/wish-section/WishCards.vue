@@ -11,7 +11,7 @@ defineProps<{
   <div class="mt-4 rounded-md border-2 border-main-text bg-slate-100 px-4">
     <div class="border-b-2 border-slate-800/80 pt-4 text-lg">
       <h2 class="text-center font-trajan italic text-black">Your Wishes</h2>
-      <p class="w-full text-right text-sm font-light text-black">Total: 100</p>
+      <p class="w-full text-right text-sm font-light text-black">Total: {{ wishes.length }}</p>
     </div>
 
     <div class="max-h-[calc(100vh-16rem)] overflow-auto">
@@ -29,7 +29,7 @@ defineProps<{
           {{ wish.name }}
           <time class="text-xs italic opacity-50">{{ moment(wish.date).fromNow() }}</time>
         </div>
-        <div class="chat-bubble !bg-main-text !text-white">{{ wish.wish }}</div>
+        <div class="chat-bubble whitespace-pre-wrap !bg-main-text !text-white">{{ wish.wish }}</div>
         <div class="chat-footer opacity-50">Delivered</div>
       </div>
 
