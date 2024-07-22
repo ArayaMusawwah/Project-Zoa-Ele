@@ -5,3 +5,11 @@ export interface Wish {
   date: Date
   kehadiran: 'hadir' | 'tidak_hadir'
 }
+
+export interface Guest {
+  id: number | string
+  name: string
+  link: string
+  isCompleted: boolean
+  date: Date
+}

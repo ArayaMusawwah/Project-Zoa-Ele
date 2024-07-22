@@ -1,8 +1,7 @@
 {
   "files.exclude": {
-    "node_modules": true,
     ".next": true,
-    ".vscode": true,
-    ".nuxt": true
+    ".nuxt": true,
+    ".vscode": true
   }
 }
