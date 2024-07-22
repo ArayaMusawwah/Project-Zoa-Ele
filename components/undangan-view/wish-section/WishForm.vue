@@ -85,7 +85,7 @@ const handleSubmit = async () => {
 
       <button
         type="submit"
-        class="rounded-md border-2 !bg-main-text px-4 py-2 text-white hover:!bg-main-text2 disabled:!bg-slate-300"
+        class="rounded-md border-2 !border-main-text/50 !bg-main-text px-4 py-2 text-white hover:!bg-main-text2 disabled:!bg-slate-300"
         :disabled="isLoading"
       >
         {{ isLoading ? 'Mengirim...' : 'Kirim' }}

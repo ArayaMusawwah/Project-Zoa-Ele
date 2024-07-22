@@ -14,7 +14,7 @@ defineProps<{
       <p class="w-full text-right text-sm font-light text-black">Total: {{ wishes.length }}</p>
     </div>
 
-    <div class="max-h-[calc(100vh-16rem)] overflow-auto">
+    <div class="max-h-[calc(100vh-16rem)] overflow-auto py-4">
       <div
         :class="`chat text-black ${Math.random() > 0.3 ? 'chat-start' : 'chat-end'}`"
         v-for="wish in wishes"
