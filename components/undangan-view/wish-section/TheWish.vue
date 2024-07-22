@@ -22,7 +22,7 @@ fetchWishes()
       Your Wish
     </h1>
 
-    <WishForm />
+    <WishForm :fetchWishes="fetchWishes" />
 
     <WishCards :wishes="wishes" />
   </section>

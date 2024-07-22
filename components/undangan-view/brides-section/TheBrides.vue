@@ -15,15 +15,20 @@ import BridesFlower from './BridesFlower.vue'
         Assalamu'alaikum Warahmatullahi Wabarokaatuh
       </h3>
 
-      <p class="mt-2 text-center text-sm">
+      <p class="mt-2 text-center text-sm text-main-text">
         Maha Suci Allah SWT yang telah menciptakan segala sesuatu dengan berpasang-pasangan. Dengan
         izin Allah SWT kami mengundang Bapak/Ibu/Saudara/i ke acara pernikahan kami:
       </p>
     </div>
 
     <div class="mx-auto mt-14 grid max-w-6xl justify-center gap-4 px-[7%] xl:mt-32 xl:grid-cols-3">
-      <BridesInfo :name="DATA.mempelai.perempuan.panggilan" :fullName="DATA.mempelai.perempuan.nama"
-        :parents-name="DATA.mempelai.perempuan.ortu" :picture="'/images/dummy-bride.jpg'" :nums="'kedua'" />
+      <BridesInfo
+        :name="DATA.mempelai.perempuan.panggilan"
+        :fullName="DATA.mempelai.perempuan.nama"
+        :parents-name="DATA.mempelai.perempuan.ortu"
+        :picture="'/images/dummy-bride.jpg'"
+        :nums="'kedua'"
+      />
 
       <div className="mx-auto my-2 flex w-96 max-w-[150px] items-center space-x-4 sm:my-5">
         <span className="bg block h-[2px] w-full bg-black" />
@@ -31,8 +36,13 @@ import BridesFlower from './BridesFlower.vue'
         <span className="bg block h-[2px] w-full bg-black" />
       </div>
 
-      <BridesInfo :name="DATA.mempelai.laki.panggilan" :fullName="DATA.mempelai.laki.nama"
-        :parents-name="DATA.mempelai.laki.ortu" :picture="'/images/dummy-groom.jpg'" :nums="'ketiga'" />
+      <BridesInfo
+        :name="DATA.mempelai.laki.panggilan"
+        :fullName="DATA.mempelai.laki.nama"
+        :parents-name="DATA.mempelai.laki.ortu"
+        :picture="'/images/dummy-groom.jpg'"
+        :nums="'ketiga'"
+      />
     </div>
 
     <BridesFlower />

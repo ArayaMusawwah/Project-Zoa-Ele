@@ -4,12 +4,19 @@ import Swal from 'sweetalert2'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
+const props = defineProps<{
+  fetchWishes: () => void
+}>()
+
 const nameFromQuery = useRoute().query.to
 const name = ref(nameFromQuery || '')
 const wish = ref<string>('')
 const kehadiran = ref<'hadir' | 'tidak_hadir' | 'Konfirmasi Kehadiran'>('Konfirmasi Kehadiran')
 
+const isLoading = ref(false)
+
 const handleSubmit = async () => {
+  isLoading.value = true
   if (
     kehadiran.value === 'Konfirmasi Kehadiran' ||
     String(name.value).trim() === '' ||
@@ -34,6 +41,9 @@ const handleSubmit = async () => {
       })
   } catch (error) {
     console.error('Error creating user:', error)
+  } finally {
+    props.fetchWishes()
+    isLoading.value = false
   }
 }
 </script>
@@ -75,9 +85,10 @@ const handleSubmit = async () => {
 
       <button
         type="submit"
-        class="rounded-md border-2 !bg-main-text px-4 py-2 text-white hover:!bg-main-text2"
+        class="rounded-md border-2 !bg-main-text px-4 py-2 text-white hover:!bg-main-text2 disabled:!bg-slate-300"
+        :disabled="isLoading"
       >
-        Kirim
+        {{ isLoading ? 'Mengirim...' : 'Kirim' }}
       </button>
     </form>
   </div>
