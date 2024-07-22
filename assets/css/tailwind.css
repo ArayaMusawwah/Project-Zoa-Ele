@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playwrite+CA:wght@100..400&family=Sacramento&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+  font-family: 'Trajan Pro';
+  src: url('/fonts/Trajan-Pro.ttf');
+}
+@font-face {
+  font-family: 'Mothanna';
+  src: url('/fonts/Mothanna.ttf');
+}
+@font-face {
+  font-family: 'Kalufonia';
+  src: url('/fonts/Kalufonia-Regular.ttf');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .sub-container {
+    @apply relative w-full;
+  }
+}

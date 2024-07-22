@@ -1,0 +1,9 @@
+<script setup lang="ts">
+import PinkOnlyFlower from '/images/pink-only-flower.png'
+import PurpleOnlyFlower from '/images/purple-only-flower.png'
+</script>
+
+<template>
+  <img :src="PinkOnlyFlower" alt="" class="absolute left-5 top-10 w-24" />
+  <img :src="PurpleOnlyFlower" alt="" class="absolute bottom-10 right-16 w-16" />
+</template>
