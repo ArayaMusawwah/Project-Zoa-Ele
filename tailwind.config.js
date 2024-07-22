@@ -35,7 +35,8 @@ export default {
       trajan: ['Trajan Pro', 'serif'],
       mothanna: ['Mothanna', 'serif'],
       playwriteCanada: ['Playwrite CA', 'sans-serif'],
-      kalufonia: ['Kalufonia', 'serif']
+      kalufonia: ['Kalufonia', 'serif'],
+      zain: ['Zain', 'serif']
     },
     plugins: [daisyui]
   },
