@@ -4,7 +4,9 @@ import WishCards from './WishCards.vue'
 import WishForm from './WishForm.vue'
 
 const fetchWishes = async (): Promise<void> => {
-  const response = await useFetch<{ datum: Wish[] }>('/api/get-wishes', { pick: ['datum'] })
+  const response = await useFetch<{ datum: Wish[] }>(`/api/get-wishes`, {
+    pick: ['datum']
+  })
   wishes.value = response.data.value?.datum ?? []
 }
 const wishes = ref<Wish[]>([])
