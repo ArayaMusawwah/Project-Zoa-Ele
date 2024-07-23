@@ -20,6 +20,9 @@ importers:
       '@prisma/client':
         specifier: ^5.17.0
         version: 5.17.0(prisma@5.17.0)
+      '@stefanobartoletti/nuxt-social-share':
+        specifier: ^1.0.0
+        version: 1.0.0(magicast@0.3.4)(rollup@4.19.0)
       '@supabase/supabase-js':
         specifier: ^2.44.4
         version: 2.44.4
@@ -60,8 +63,8 @@ importers:
         specifier: latest
         version: 3.4.33(typescript@5.5.3)
       vue-social-sharing:
-        specifier: ^3.0.9
-        version: 3.0.9(vue@3.4.33(typescript@5.5.3))
+        specifier: 4.0.0-alpha4
+        version: 4.0.0-alpha4(vue@3.4.33(typescript@5.5.3))
     devDependencies:
       '@nuxtjs/tailwindcss':
         specifier: ^6.12.1
@@ -1148,6 +1151,9 @@ packages:
   '@sindresorhus/merge-streams@2.3.0':
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
+
+  '@stefanobartoletti/nuxt-social-share@1.0.0':
+    resolution: {integrity: sha512-smrfpagBbNaW9fNAZK/6c1rK/UXNgYWY4Iu1+S1C1hN94NBKSidoLE4R+k/X9aVT380Pc4CbgQiLO1mrVCCnOw==}
 
   '@supabase/auth-js@2.64.4':
     resolution: {integrity: sha512-9ITagy4WP4FLl+mke1rchapOH0RQpf++DI+WSG2sO1OFOZ0rW3cwAM0nCrMOxu+Zw4vJ4zObc08uvQrXx590Tg==}
@@ -4236,10 +4242,10 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
-  vue-social-sharing@3.0.9:
-    resolution: {integrity: sha512-Yg4oz5cSkr7ieMAgumwoRLnFhAaoUGCsN8lZE9yUkuQzbKid8yBOn4mLjfx/DA/E8nxYjunAfIUFs7eKIkBjPA==}
+  vue-social-sharing@4.0.0-alpha4:
+    resolution: {integrity: sha512-hMbgpZkY5aRAiznSB/sgzdMVgdSbkmIHEaELX7pUbuUd6KS1Z/GAi7a/q0Qn+GFn0+6qMMvwyp3ZOE0+WYPQ1w==}
     peerDependencies:
-      vue: ^2.6.10
+      vue: ^3.0.0
 
   vue@3.4.33:
     resolution: {integrity: sha512-VdMCWQOummbhctl4QFMcW6eNtXHsFyDlX60O/tsSQuCcuDOnJ1qPOhhVla65Niece7xq/P2zyZReIO5mP+LGTQ==}
@@ -5441,6 +5447,15 @@ snapshots:
     optional: true
 
   '@sindresorhus/merge-streams@2.3.0': {}
+
+  '@stefanobartoletti/nuxt-social-share@1.0.0(magicast@0.3.4)(rollup@4.19.0)':
+    dependencies:
+      '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.19.0)
+      defu: 6.1.4
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
 
   '@supabase/auth-js@2.64.4':
     dependencies:
@@ -8938,7 +8953,7 @@ snapshots:
       '@vue/devtools-api': 6.6.3
       vue: 3.4.33(typescript@5.5.3)
 
-  vue-social-sharing@3.0.9(vue@3.4.33(typescript@5.5.3)):
+  vue-social-sharing@4.0.0-alpha4(vue@3.4.33(typescript@5.5.3)):
     dependencies:
       vue: 3.4.33(typescript@5.5.3)
 

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { queryParamsEncoder, toast } from '~/lib/utils'
 import type { Guest } from '~/types'
 import _ from 'lodash'
+import ShareModal from './ShareModal.vue'
 
 const props = defineProps<{
   guests: Guest[]
@@ -115,7 +116,9 @@ const debouncedUpdate = _.debounce(async () => {
               v-model="guest.name"
               class="w-full rounded-md border border-black/60 bg-white px-2 py-1 text-black"
             />
-            <span v-else :class="{ 'line-through': guest.isCompleted }">{{ guest.name }}</span>
+            <span v-else :class="{ 'text-red-500 line-through': guest.isCompleted }">{{
+              guest.name
+            }}</span>
           </td>
 
           <td>
@@ -145,7 +148,10 @@ const debouncedUpdate = _.debounce(async () => {
                 {{ isEditing && editingId === guest.id ? 'Save' : 'Edit' }}
               </button>
 
-              <button class="btn btn-success join-item">Share</button>
+              <button class="btn btn-success join-item" onclick="my_modal_2.showModal()">
+                Share
+              </button>
+              <ShareModal :guest="guest" />
 
               <button
                 class="btn btn-error join-item disabled:!bg-gray-300 disabled:!text-gray-500"

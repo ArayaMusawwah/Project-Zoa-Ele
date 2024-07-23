@@ -26,12 +26,8 @@
         <div tabindex="0" class="card-body">
           <div class="space-y-2 text-xs md:text-sm">
             <p>
-              Fitur ini digunakan untuk membuat template pesan yang dinamis untuk langsung di-share.
-            </p>
-            <p>
-              jika anda ingin menyisipkan link yang dinamis di tengah-tengah pesan, maka tambahkan
-              kata &quot; <span class="text-red-500">&#123;link_tamu&#125;</span> &quot;
-              <span class="font-light italic">(tanpa tanda kutip).</span>
+              Fitur ini digunakan untuk membuat deskripsi pesan yang dinamis untuk langsung di-share
+              ke teman anda.
             </p>
           </div>
         </div>
