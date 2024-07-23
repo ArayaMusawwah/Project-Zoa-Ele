@@ -7,12 +7,10 @@ const props = defineProps<{
   guests: Guest[]
 }>()
 
-let editingId: number | null = null
-const originalName = ref('')
+const emit = defineEmits(['update-guests'])
 
-watch(originalName, () => {
-  console.log('originalName=>', originalName.value)
-})
+let editingId: number | null = null
+let originalName: string | null = null
 
 const isEditing = ref(false)
 const isLoadingToDelete = ref(false)
@@ -39,14 +37,26 @@ const handleDeleteGuest = async (id: number, name: string) => {
   }
 }
 
-const handleEditGuest = async () => {
-  const theGuest = props.guests.find((guest) => guest.id === editingId)
+const handleEditGuest = async (guest: Guest) => {
+  const newGuests = props.guests.map((g) => {
+    if (g.id === guest.id) {
+      return {
+        ...g,
+        name: guest.name,
+        link: queryParamsEncoder(guest.name)
+      }
+    } else {
+      return {
+        ...g
+      }
+    }
+  })
+
+  const theGuest = props.guests.find((g) => g?.id === guest.id)
 
   try {
-    await axios.patch('/api/guests/edit', {
-      ...theGuest,
-      name: theGuest?.name,
-      link: queryParamsEncoder(theGuest?.name as string)
+    await axios.patch('/api/guests/edit', theGuest).then(() => {
+      emit('update-guests', newGuests)
     })
   } catch (error) {
     console.log(error)
@@ -105,10 +115,10 @@ const handleEditGuest = async () => {
                 @click="
                   () => {
                     if (!isEditing) originalName = guest.name
-                    editingId = ~~guest.id
                     isEditing = !isEditing
+                    editingId = ~~guest.id
                     if (originalName === guest.name) return
-                    if (!isEditing && guest.name.trim() !== '') handleEditGuest()
+                    if (!isEditing && guest.name.trim() !== '') handleEditGuest(guest)
                   }
                 "
               >

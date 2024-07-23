@@ -3,6 +3,7 @@ import CreateForm from '~/components/create-invitation-view/CreateForm.vue'
 import TableGuests from './TableGuests.vue'
 import type { Guest } from '~/types'
 const guests = ref<Guest[]>([])
+console.log('guests=>', guests.value)
 
 const fetchGuests = async (): Promise<void> => {
   const res = await useFetch<{ datum: Guest[] }>(`/api/guests`, {
@@ -10,7 +11,9 @@ const fetchGuests = async (): Promise<void> => {
   })
   guests.value = res.data.value?.datum ?? []
 }
-
+const justUpdate = (newGuest: Guest[]) => {
+  guests.value = newGuest
+}
 fetchGuests()
 </script>
 
@@ -20,6 +23,6 @@ fetchGuests()
   >
     <CreateForm :fetchGuests="fetchGuests" />
 
-    <TableGuests :guests="guests" />
+    <TableGuests :guests="guests" @update-guests="justUpdate" />
   </main>
 </template>
