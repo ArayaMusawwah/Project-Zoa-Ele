@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 const namaTamu = ref('')
-const template = ref('')
+const template: string | undefined = inject('template')
 
 const isEditing = ref(false)
 const isLoading = ref(false)
@@ -43,7 +43,7 @@ const handleCreateGuest = async () => {
 const handleCreateTemplate = () => {
   isLoading.value = true
   const data = {
-    template: template.value
+    template: template
   }
 
   try {

@@ -13,6 +13,10 @@ const fetchGuests = async (): Promise<void> => {
 const justUpdate = (newGuest: Guest[]) => {
   guests.value = newGuest
 }
+
+const template = ref('')
+provide('template', template)
+
 fetchGuests()
 </script>
 
