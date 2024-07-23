@@ -7,7 +7,7 @@ import ClosingFlower from './ClosingFlower.vue'
 <template>
   <section class="sub-container mx-auto pb-16 pt-20 text-main-text max-md:px-8">
     <div class="mx-auto max-w-xl">
-      <img
+      <NuxtImg
         src="/images/crystal-flower.png"
         alt=""
         class="absolute left-1/2 top-0 w-20 -translate-x-1/2 rotate-180 object-cover"

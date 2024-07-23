@@ -68,3 +68,25 @@ export const updateGuest = async (id: number, data: Guest) => {
     await prisma.$disconnect()
   }
 }
+
+export const updateManyGuests = async (data: Guest[]) => {
+  try {
+    const updatePromises = data.map((item) =>
+      prisma.guest.update({
+        where: { id: ~~item.id },
+        data: {
+          name: item.name,
+          link: item.link,
+          isCompleted: item.isCompleted,
+          date: item.date
+        }
+      })
+    )
+
+    await Promise.all(updatePromises)
+  } catch (error) {
+    console.error('Error updating guests:', error)
+  } finally {
+    await prisma.$disconnect()
+  }
+}

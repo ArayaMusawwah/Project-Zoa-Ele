@@ -14,7 +14,7 @@ defineProps<{
       <div
         class="overflow-hidden rounded-bl-lg rounded-br-[5rem] rounded-tl-[5rem] rounded-tr-lg border-[3px] border-main-text bg-sky-200 shadow-md shadow-purple-400/50"
       >
-        <img :src="picture" alt="" class="w-full object-cover" />
+        <NuxtImg :src="picture" alt="" class="w-full object-cover" />
       </div>
 
       <span

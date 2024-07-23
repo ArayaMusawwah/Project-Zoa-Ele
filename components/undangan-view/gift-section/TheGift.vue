@@ -32,7 +32,7 @@ const handleCopy = (noRek: string) => {
         v-for="(rek, i) in DATA.kado.rekening"
         :key="i"
       >
-        <img :src="`/images${rek.gambar}`" :alt="rek.gambar" class="w-[12rem] xl:w-2/3" />
+        <NuxtImg :src="`/images${rek.gambar}`" :alt="rek.gambar" class="w-[12rem] xl:w-2/3" />
         <p class="mt-2 text-sm">No. Rekening: {{ rek.nomor }}</p>
         <p class="mt-1 text-sm">An. {{ rek.atasNama }}</p>
         <button

@@ -31,7 +31,7 @@ const socials = [
           href="https://github.com/ArayaMusawwah"
           target="_blank"
           class="flex cursor-pointer items-center"
-          ><img src="/images/logo.png" alt="" class="w-12"
+          ><NuxtImg src="/images/logo.png" alt="" class="w-12"
         /></a>
         <h2 class="font-zain text-3xl text-white hover:text-main-text">
           <a href="https://wa.me/6289679063278" target="_blank">Araya Musawwah</a>

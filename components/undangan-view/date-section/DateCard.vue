@@ -15,10 +15,10 @@ defineProps<{
   <div
     class="relative max-w-xs overflow-hidden rounded-bl-lg rounded-br-[5rem] rounded-tl-[5rem] rounded-tr-lg border-[3px] border-indigo-400/90 bg-gradient-to-br from-sky-50/70 to-blue-50/20 p-4 px-6 pb-10 shadow-md shadow-cyan-400/20 xl:max-w-sm"
   >
-    <img
+    <NuxtImg
       src="/images/blue-only-flower.png"
       alt=""
-      class="animate-spin-slower absolute right-0 top-0 w-14"
+      class="absolute right-0 top-0 w-14 animate-spin-slower"
     />
 
     <h2 class="mt-10 text-center font-playwriteCanada text-2xl font-semibold">{{ title }}</h2>

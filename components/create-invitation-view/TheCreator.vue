@@ -3,7 +3,6 @@ import CreateForm from '~/components/create-invitation-view/CreateForm.vue'
 import TableGuests from './TableGuests.vue'
 import type { Guest } from '~/types'
 const guests = ref<Guest[]>([])
-console.log('guests=>', guests.value)
 
 const fetchGuests = async (): Promise<void> => {
   const res = await useFetch<{ datum: Guest[] }>(`/api/guests`, {

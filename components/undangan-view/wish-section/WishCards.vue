@@ -22,7 +22,7 @@ defineProps<{
       >
         <div class="chat-image avatar">
           <div class="w-10 rounded-full">
-            <img alt="" src="/images/photo-profile.webp" />
+            <NuxtImg alt="" src="/images/photo-profile.webp" />
           </div>
         </div>
         <div class="chat-header my-1">

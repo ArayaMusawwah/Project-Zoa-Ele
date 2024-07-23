@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { queryParamsEncoder, toast } from '~/lib/utils'
 import type { Guest } from '~/types'
+import _ from 'lodash'
 
 const props = defineProps<{
   guests: Guest[]
@@ -14,6 +15,7 @@ let originalName: string | null = null
 
 const isEditing = ref(false)
 const isLoadingToDelete = ref(false)
+const checkedGuests = ref([] as Guest[])
 
 const handleDeleteGuest = async (id: number, name: string) => {
   isLoadingToDelete.value = true
@@ -52,7 +54,7 @@ const handleEditGuest = async (guest: Guest) => {
     }
   })
 
-  const theGuest = props.guests.find((g) => g?.id === guest.id)
+  const theGuest = newGuests.find((g) => g?.id === guest.id)
 
   try {
     await axios.patch('/api/guests/edit', theGuest).then(() => {
@@ -62,6 +64,14 @@ const handleEditGuest = async (guest: Guest) => {
     console.log(error)
   }
 }
+
+const debouncedUpdate = _.debounce(async () => {
+  try {
+    await axios.put(`/api/guests/edit`, checkedGuests.value)
+  } catch (error) {
+    console.log(error)
+  }
+}, 1000)
 </script>
 
 <template>
@@ -84,7 +94,17 @@ const handleEditGuest = async (guest: Guest) => {
         <tr class="bg-white text-center text-black" v-for="guest in guests" :key="guest.id">
           <th>
             <label>
-              <input type="checkbox" class="checkbox checkbox-info bg-zinc-300" />
+              <input
+                type="checkbox"
+                class="checkbox checkbox-info bg-zinc-300"
+                v-model="guest.isCompleted"
+                @change="
+                  () => {
+                    checkedGuests.push(guest)
+                    debouncedUpdate()
+                  }
+                "
+              />
             </label>
           </th>
 
@@ -95,7 +115,7 @@ const handleEditGuest = async (guest: Guest) => {
               v-model="guest.name"
               class="w-full rounded-md border border-black/60 bg-white px-2 py-1 text-black"
             />
-            <span v-else>{{ guest.name }}</span>
+            <span v-else :class="{ 'line-through': guest.isCompleted }">{{ guest.name }}</span>
           </td>
 
           <td>
