@@ -22,7 +22,7 @@ const socials = [
 </script>
 
 <template>
-  <footer class="w-full bg-gray-950 py-4 pb-8">
+  <footer class="w-full bg-gray-950 px-4 py-4 pb-8">
     <h1 class="mb-2 text-center">Made With <BIconHeartFill class="inline text-red-500" /> by:</h1>
 
     <div class="grid grid-cols-2 place-items-center xl:grid-cols-3">
@@ -33,7 +33,7 @@ const socials = [
           class="flex cursor-pointer items-center"
           ><NuxtImg src="/images/logo.png" alt="" class="w-12"
         /></a>
-        <h2 class="font-zain text-3xl text-white hover:text-main-text">
+        <h2 class="font-zain text-xl text-white hover:text-main-text lg:text-3xl">
           <a href="https://wa.me/6289679063278" target="_blank">Araya Musawwah</a>
         </h2>
       </div>

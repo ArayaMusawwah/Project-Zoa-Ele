@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import axios from 'axios'
-import Swal from 'sweetalert2'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { toast } from '~/lib/utils'
+
+definePageMeta({
+  middleware: 'cors'
+})
 
 const props = defineProps<{
   fetchWishes: () => void
@@ -17,6 +21,12 @@ const isLoading = ref(false)
 
 const handleSubmit = async () => {
   isLoading.value = true
+
+  const formData = new URLSearchParams()
+
+  formData.append('nama', String(name.value))
+  formData.append('kehadiran', String(kehadiran.value))
+
   if (
     kehadiran.value === 'Konfirmasi Kehadiran' ||
     String(name.value).trim() === '' ||
@@ -25,22 +35,30 @@ const handleSubmit = async () => {
     return
 
   try {
-    await axios
-      .post(`/api/wishes/create`, {
+    await useFetch(`/api/wishes/create`, {
+      method: 'POST',
+      body: {
         name: name.value as string,
         wish: wish.value as string,
         kehadiran: kehadiran.value as 'hadir' | 'tidak_hadir',
         date: new Date()
+      }
+    }).then(() => {
+      toast.fire({
+        icon: 'success',
+        title: 'Terima kasih',
+        text: 'Doa restu Anda sudah disimpan'
       })
-      .then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Terima kasih',
-          text: 'Doa restu Anda sudah disimpan'
-        })
-      })
+      wish.value = ''
+    })
+
+    await axios.post(`${useRuntimeConfig().public.webAppUrl}`, formData, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
   } catch (error) {
-    console.error('Error creating user:', error)
+    throw createError({ statusCode: 500, statusMessage: 'Error creating user' })
   } finally {
     props.fetchWishes()
     isLoading.value = false
@@ -51,14 +69,13 @@ const handleSubmit = async () => {
 <template>
   <div class="mx-auto mt-10">
     <form
-      action="#"
+      @submit.prevent="handleSubmit"
       method="post"
       class="flex flex-col gap-2 py-2 text-black *:bg-slate-100"
-      @submit.prevent="handleSubmit"
     >
       <input
         type="text"
-        name="name"
+        name="nama"
         placeholder="Your Name"
         class="rounded-md border-2 border-main-text px-4 py-2"
         v-model="name"
@@ -76,6 +93,7 @@ const handleSubmit = async () => {
       <select
         class="w-full rounded-md border-2 border-main-text px-4 py-2"
         v-model="kehadiran"
+        name="kehadiran"
         required
       >
         <option disabled>Konfirmasi Kehadiran</option>

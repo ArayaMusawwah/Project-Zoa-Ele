@@ -8,5 +8,6 @@
     src="/images/purple-only-flower.png"
     alt=""
     class="absolute bottom-10 right-16 w-16 lg:w-32"
+    quality="30"
   />
 </template>

@@ -194,6 +194,6 @@ const setToShare = (guest: Guest) => {
         </td>
       </tbody>
     </table>
-    <TablePagination />
   </div>
+  <TablePagination />
 </template>

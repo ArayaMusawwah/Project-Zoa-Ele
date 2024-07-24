@@ -13,7 +13,7 @@ import TheWish from '~/components/undangan-view/wish-section/TheWish.vue'
 const activator = useActivator()
 </script>
 
-<!-- TODO: Flowers size for desktop views  -->
+<!-- TODO: Connect kehadiran to google sheet  -->
 
 <template>
   <div :class="{ 'max-h-screen overflow-hidden': !activator.active, 'overflow-hidden': true }">

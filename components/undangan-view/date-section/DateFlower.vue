@@ -4,7 +4,12 @@
     alt=""
     class="absolute left-0 top-0 w-10 rotate-180 object-cover xl:w-20"
   />
-  <NuxtImg src="/images/pink-only-flower.png" alt="" class="absolute bottom-0 right-0 w-24" />
+  <NuxtImg
+    src="/images/pink-only-flower.png"
+    alt=""
+    class="absolute bottom-0 right-0 w-24"
+    quality="30"
+  />
   <NuxtImg
     src="/images/purple-only-flower.png"
     alt=""

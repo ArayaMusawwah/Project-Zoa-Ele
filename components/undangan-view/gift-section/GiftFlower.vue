@@ -11,6 +11,7 @@
       src="/images/pink-only-flower.png"
       alt=""
       class="absolute bottom-1/2 left-2 w-16 -translate-y-1/2 lg:left-10 lg:w-40"
+      quality="30"
     />
   </div>
 </template>
