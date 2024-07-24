@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import TheCreator from '~/components/create-invitation-view/TheCreator.vue'
+definePageMeta({
+  middleware: 'buat-undangan'
+})
 </script>
 
 <template>

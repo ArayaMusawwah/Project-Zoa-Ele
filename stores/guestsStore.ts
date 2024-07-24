@@ -10,7 +10,7 @@ export const useGuests = defineStore('guests', () => {
   const currentPage = ref(1)
   const setCurrentPage = (page: number) => (currentPage.value = page)
 
-  const pageSize = ref(10)
+  const pageSize = ref(20)
 
   const paginatedGuests = computed(() => {
     const startIndex = (currentPage.value - 1) * pageSize.value

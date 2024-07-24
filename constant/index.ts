@@ -1,4 +1,5 @@
 export const DATA = {
+  key: '354',
   mempelai: {
     keduaMempelai: 'iqbal & lisa',
     story:

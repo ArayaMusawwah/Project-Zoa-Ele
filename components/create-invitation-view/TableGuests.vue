@@ -80,6 +80,7 @@ const setToShare = (guest: Guest) => {
 
 <template>
   <div class="mt-7 overflow-x-auto rounded-sm">
+    <p class="px-10 text-right text-sm font-light text-black">Total: {{ store.guests.length }}</p>
     <table class="table-pin-rows table justify-center overflow-hidden">
       <thead>
         <tr class="!bg-gray-400 text-center text-black">
