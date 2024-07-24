@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
-const store = pageStore()
 
-const page = computed(() => Number(route.query.page) || 1)
-
-const props = defineProps<{
-  fetchGuests: () => void
-}>()
+const store = useGuests()
 
 const handlePage = async (page: number) => {
   await navigateTo({ query: { ...route.query, page: String(page) } })
-  props.fetchGuests()
+  store.fetchGuests()
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
@@ -25,13 +19,13 @@ const handlePage = async (page: number) => {
 <template>
   <div class="join mx-auto mt-5">
     <input
-      v-for="i in store.totalPages + 1"
+      v-for="i in store.totalPage"
       :key="i"
       class="join-item btn btn-square"
       type="radio"
       name="options"
       :aria-label="String(i)"
-      :checked="i === page"
+      :checked="i === store.currentPage"
       @change="() => handlePage(i)"
     />
   </div>

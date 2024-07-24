@@ -20,16 +20,12 @@ export const createGuests = async (data: Guest) => {
   }
 }
 
-export const getAllGuests = async (page: number) => {
-  const limit = 10
-  const skip = (page - 1) * limit
+export const getAllGuests = async () => {
   try {
     const guests = await prisma.guest.findMany({
       orderBy: {
         date: 'desc'
-      },
-      take: limit,
-      skip
+      }
     })
     return guests
   } catch (error) {

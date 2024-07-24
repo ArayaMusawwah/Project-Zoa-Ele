@@ -3,9 +3,7 @@ import axios from 'axios'
 import TemplateInfo from './TemplateInfo.vue'
 import { queryParamsEncoder, toast } from '~/lib/utils'
 
-const props = defineProps<{
-  fetchGuests: () => void
-}>()
+const store = useGuests()
 
 const namaTamu = ref('')
 const template: string | undefined = inject('template')
@@ -31,7 +29,7 @@ const handleCreateGuest = async () => {
 
       namaTamu.value = ''
 
-      props.fetchGuests()
+      store.fetchGuests()
     })
   } catch (error) {
     console.error('Error creating template:', error)

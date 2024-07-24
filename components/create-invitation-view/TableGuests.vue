@@ -6,12 +6,7 @@ import _ from 'lodash'
 import DialogModal from './DialogModal.vue'
 import TablePagination from './TablePagination.vue'
 
-const props = defineProps<{
-  guests: Guest[]
-  fetchGuests: () => void
-}>()
-
-const emit = defineEmits(['update-guests'])
+const store = useGuests()
 
 let editingId: number | null = null
 let originalName: string | null = null
@@ -33,9 +28,9 @@ const handleDeleteGuest = async (id: number, name: string) => {
         title: name + ' di hapus'
       })
 
-      props.guests.map((guest) => {
+      store.paginatedGuests.map((guest: Guest) => {
         if (guest.id === id) {
-          props.guests.splice(props.guests.indexOf(guest), 1)
+          store.paginatedGuests.splice(store.paginatedGuests.indexOf(guest), 1)
         }
       })
     })
@@ -47,7 +42,7 @@ const handleDeleteGuest = async (id: number, name: string) => {
 }
 
 const handleEditGuest = async (guest: Guest) => {
-  const newGuests = props.guests.map((g) => {
+  const newGuests = store.paginatedGuests.map((g: Guest) => {
     if (g.id === guest.id) {
       return {
         ...g,
@@ -61,12 +56,10 @@ const handleEditGuest = async (guest: Guest) => {
     }
   })
 
-  const theGuest = newGuests.find((g) => g?.id === guest.id)
+  const theGuest = newGuests.find((g: Guest) => g?.id === guest.id)
 
   try {
-    await axios.patch('/api/guests/edit', theGuest).then(() => {
-      emit('update-guests', newGuests)
-    })
+    await axios.patch('/api/guests/edit', theGuest).then(() => store.fetchGuests())
   } catch (error) {
     console.error(error)
   }
@@ -87,7 +80,7 @@ const setToShare = (guest: Guest) => {
 
 <template>
   <div class="mt-7 overflow-x-auto rounded-sm">
-    <table class="table-pin-rows table overflow-hidden">
+    <table class="table-pin-rows table justify-center overflow-hidden">
       <thead>
         <tr class="!bg-gray-400 text-center text-black">
           <th>
@@ -102,8 +95,20 @@ const setToShare = (guest: Guest) => {
       </thead>
 
       <tbody>
-        <template v-if="guests">
-          <tr class="bg-white text-center text-black" v-for="(guest, index) in guests" :key="index">
+        <tr v-if="store.isLoading">
+          <td colspan="4" class="bg-white">
+            <div class="mx-auto grid place-items-center">
+              <span class="loading loading-dots loading-lg mx-auto" />
+            </div>
+          </td>
+        </tr>
+
+        <template v-else-if="store.paginatedGuests.length && !store.isLoading">
+          <tr
+            class="bg-white text-center text-black"
+            v-for="(guest, index) in store.paginatedGuests"
+            :key="index"
+          >
             <th>
               <label>
                 <input
@@ -181,11 +186,13 @@ const setToShare = (guest: Guest) => {
             </td>
           </tr>
         </template>
-        <tr class="text-center text-black" v-else>
-          Belum ada data
-        </tr>
+        <td colspan="4" class="bg-white" v-else>
+          <div class="mx-auto grid place-items-center text-center italic text-black">
+            <span>Belum ada nama tamu yang dimasukkan</span>
+          </div>
+        </td>
       </tbody>
     </table>
-    <TablePagination :fetchGuests />
+    <TablePagination />
   </div>
 </template>
