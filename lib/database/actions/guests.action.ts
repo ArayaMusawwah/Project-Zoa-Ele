@@ -14,21 +14,27 @@ export const createGuests = async (data: Guest) => {
     })
   } catch (error) {
     console.error('Error creating guests:', error)
+    throw error
   } finally {
     await prisma.$disconnect()
   }
 }
 
-export const getAllGuests = async () => {
+export const getAllGuests = async (page: number) => {
+  const limit = 10
+  const skip = (page - 1) * limit
   try {
     const guests = await prisma.guest.findMany({
       orderBy: {
         date: 'desc'
-      }
+      },
+      take: limit,
+      skip
     })
     return guests
   } catch (error) {
     console.error('Error fetching guests:', error)
+    throw error
   } finally {
     await prisma.$disconnect()
   }
@@ -43,6 +49,7 @@ export const deleteGuest = async (id: number) => {
     })
   } catch (error) {
     console.error('Error deleting guest:', error)
+    throw error
   } finally {
     await prisma.$disconnect()
   }
@@ -64,6 +71,7 @@ export const updateGuest = async (id: number, data: Guest) => {
     })
   } catch (error) {
     console.error('Error updating guest:', error)
+    throw error
   } finally {
     await prisma.$disconnect()
   }
@@ -86,6 +94,7 @@ export const updateManyGuests = async (data: Guest[]) => {
     await Promise.all(updatePromises)
   } catch (error) {
     console.error('Error updating guests:', error)
+    throw error
   } finally {
     await prisma.$disconnect()
   }

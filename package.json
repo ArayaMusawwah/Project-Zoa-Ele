@@ -26,6 +26,7 @@
     "nuxt": "^3.12.4",
     "pinia": "^2.1.7",
     "prisma": "^5.17.0",
+    "query-string": "^9.1.0",
     "sweetalert2": "^11.12.3",
     "swr": "^2.2.5",
     "vue": "latest",

@@ -14,8 +14,6 @@ export default defineEventHandler(async (event) => {
   if (event.node.req.method === 'PUT') {
     try {
       const body = await readBody(event)
-      console.log('defineEventHandler ~ body=>', body)
-
       await updateManyGuests(body)
       return { status: 200, message: 'Guests updated successfully' }
     } catch {

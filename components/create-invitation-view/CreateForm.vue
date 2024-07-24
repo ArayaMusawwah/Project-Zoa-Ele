@@ -39,21 +39,6 @@ const handleCreateGuest = async () => {
     isLoading.value = false
   }
 }
-
-const handleCreateTemplate = () => {
-  isLoading.value = true
-  const data = {
-    template: template
-  }
-
-  try {
-    console.log(data)
-  } catch (error) {
-    console.error('Error creating template:', error)
-  } finally {
-    isLoading.value = false
-  }
-}
 </script>
 
 <template>
@@ -79,7 +64,7 @@ const handleCreateTemplate = () => {
 
     <TemplateInfo />
 
-    <form class="flex flex-col gap-3" @submit.prevent="handleCreateTemplate">
+    <form class="flex flex-col gap-3">
       <textarea
         placeholder="buat template pesan (tidak wajib)"
         class="w-full rounded-md bg-white px-4 py-1 text-black disabled:bg-gray-300 disabled:text-gray-500"
