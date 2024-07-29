@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import axios from 'axios'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { toast } from '~/lib/utils'
-
-definePageMeta({
-  middleware: 'cors'
-})
 
 const props = defineProps<{
   fetchWishes: () => void
@@ -15,7 +10,7 @@ const props = defineProps<{
 const nameFromQuery = useRoute().query.to
 const name = ref(nameFromQuery || '')
 const wish = ref<string>('')
-const kehadiran = ref<'hadir' | 'tidak_hadir' | 'Konfirmasi Kehadiran'>('Konfirmasi Kehadiran')
+// const kehadiran = ref<'hadir' | 'tidak_hadir' | 'Konfirmasi Kehadiran'>('Konfirmasi Kehadiran')
 
 const isLoading = ref(false)
 
@@ -24,11 +19,11 @@ const handleSubmit = async () => {
 
   const formData = new URLSearchParams()
 
-  formData.append('nama', String(name.value))
-  formData.append('kehadiran', String(kehadiran.value))
+  /* formData.append('nama', String(name.value))
+  formData.append('kehadiran', String(kehadiran.value)) */
 
   if (
-    kehadiran.value === 'Konfirmasi Kehadiran' ||
+    // kehadiran.value === 'Konfirmasi Kehadiran' ||
     String(name.value).trim() === '' ||
     String(wish.value).trim() === ''
   )
@@ -40,7 +35,7 @@ const handleSubmit = async () => {
       body: {
         name: name.value as string,
         wish: wish.value as string,
-        kehadiran: kehadiran.value as 'hadir' | 'tidak_hadir',
+        // kehadiran: kehadiran.value as 'hadir' | 'tidak_hadir',
         date: new Date()
       }
     }).then(() => {
@@ -51,12 +46,13 @@ const handleSubmit = async () => {
       })
       wish.value = ''
     })
-
-    await axios.post(`${useRuntimeConfig().public.webAppUrl}`, formData, {
+    /* await fetch(useRuntimeConfig().public.webAppUrl, {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    })
+        'Access-Control-Allow-Origin': 'http://localhost:3000'
+      },
+      body: formData
+    }) */
   } catch (error) {
     throw createError({ statusCode: 500, statusMessage: 'Error creating user' })
   } finally {
@@ -68,15 +64,11 @@ const handleSubmit = async () => {
 
 <template>
   <div class="mx-auto mt-10">
-    <form
-      @submit.prevent="handleSubmit"
-      method="post"
-      class="flex flex-col gap-2 py-2 text-black *:bg-slate-100"
-    >
+    <form @submit.prevent="handleSubmit" class="flex flex-col gap-2 py-2 text-black *:bg-slate-100">
       <input
         type="text"
         name="nama"
-        placeholder="Your Name"
+        placeholder="Nama anda"
         class="rounded-md border-2 border-main-text px-4 py-2"
         v-model="name"
         required
@@ -90,7 +82,7 @@ const handleSubmit = async () => {
         v-model="wish"
         required
       />
-      <select
+      <!-- <select
         class="w-full rounded-md border-2 border-main-text px-4 py-2"
         v-model="kehadiran"
         name="kehadiran"
@@ -99,7 +91,7 @@ const handleSubmit = async () => {
         <option disabled>Konfirmasi Kehadiran</option>
         <option value="hadir">Hadir</option>
         <option value="tidak_hadir">Tidak Hadir</option>
-      </select>
+      </select> -->
 
       <button
         type="submit"

@@ -15,7 +15,7 @@ import BridesFlower from './BridesFlower.vue'
         Assalamu'alaikum Warahmatullahi Wabarokaatuh
       </h3>
 
-      <p class="mt-2 text-center text-sm text-main-text">
+      <p class="mx-auto mt-2 max-w-lg text-center text-sm text-main-text">
         Maha Suci Allah SWT yang telah menciptakan segala sesuatu dengan berpasang-pasangan. Dengan
         izin Allah SWT kami mengundang Bapak/Ibu/Saudara/i ke acara pernikahan kami:
       </p>

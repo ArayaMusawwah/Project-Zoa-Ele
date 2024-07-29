@@ -22,6 +22,9 @@ fetchWishes()
     >
       Your Wish
     </h1>
+    <p class="mx-auto mt-2 max-w-xl text-pretty text-center text-black">
+      Berikan Ucapan Selamat kepada kami.
+    </p>
 
     <WishForm :fetchWishes="fetchWishes" />
 

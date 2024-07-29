@@ -10,6 +10,7 @@
     "postinstall": "prisma generate && nuxt prepare"
   },
   "dependencies": {
+    "@hebilicious/form-actions-nuxt": "^0.3.0",
     "@nuxt/image": "^1.7.0",
     "@nuxt/ui": "^2.17.0",
     "@nuxtjs/axios": "^5.13.6",
@@ -24,7 +25,6 @@
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "nuxt": "^3.12.4",
-    "nuxt-helm": "^0.0.2",
     "pinia": "^2.1.7",
     "prisma": "^5.17.0",
     "query-string": "^9.1.0",
@@ -40,7 +40,7 @@
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/tsconfig": "^0.5.1",
     "daisyui": "^4.12.10",
-    "eslint": "^9.7.0",
+    "eslint": "^8.56.0",
     "eslint-plugin-vue": "^9.27.0",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5"
