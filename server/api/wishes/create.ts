@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     try {
       await createWishes(body)
 
-      return { status: 200, message: 'Wishes created successfully' }
+      return { status: 200, message: 'Wishes created successfully', body }
     } catch {
       return { status: 500, message: 'Failed to create wishes' }
     }

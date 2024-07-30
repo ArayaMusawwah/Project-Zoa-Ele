@@ -3,7 +3,7 @@ export interface Wish {
   name: string
   wish: string
   date: Date
-  kehadiran: 'hadir' | 'tidak_hadir'
+  // kehadiran: 'hadir' | 'tidak_hadir'
 }
 
 export interface Guest {

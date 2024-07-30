@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import axios from 'axios'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { toast } from '~/lib/utils'
@@ -30,22 +31,21 @@ const handleSubmit = async () => {
     return
 
   try {
-    await useFetch(`/api/wishes/create`, {
-      method: 'POST',
-      body: {
+    await axios
+      .post(`/api/wishes/create`, {
         name: name.value as string,
         wish: wish.value as string,
         // kehadiran: kehadiran.value as 'hadir' | 'tidak_hadir',
         date: new Date()
-      }
-    }).then(() => {
-      toast.fire({
-        icon: 'success',
-        title: 'Terima kasih',
-        text: 'Doa restu Anda sudah disimpan'
       })
-      wish.value = ''
-    })
+      .then(() => {
+        toast.fire({
+          icon: 'success',
+          title: 'Terima kasih',
+          text: 'Doa restu Anda sudah disimpan'
+        })
+        wish.value = ''
+      })
     /* await fetch(useRuntimeConfig().public.webAppUrl, {
       method: 'POST',
       headers: {

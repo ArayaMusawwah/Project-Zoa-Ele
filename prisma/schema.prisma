@@ -16,9 +16,8 @@ model Guest {
 }
 
 model Wishes {
-  id        Int      @id @unique @default(autoincrement())
-  name      String
-  wish      String
-  kehadiran String
-  date      DateTime
+  id   Int      @id @unique @default(autoincrement())
+  name String
+  wish String
+  date DateTime
 }

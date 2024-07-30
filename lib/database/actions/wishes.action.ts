@@ -13,15 +13,23 @@ export const getAllWishes = async () => {
 }
 
 export const createWishes = async (data: Wish) => {
-  const { name, wish, date, kehadiran } = data
+  const { name, wish, date } = data
 
   try {
-    await prisma.wishes.create({
+    /* await prisma.wishes.create({
       data: {
         name,
         wish,
         date,
         kehadiran
+      }
+    }) */
+
+    await prisma.wishes.create({
+      data: {
+        name,
+        wish,
+        date
       }
     })
   } catch (error) {
