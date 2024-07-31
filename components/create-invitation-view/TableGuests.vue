@@ -38,6 +38,7 @@ const handleDeleteGuest = async (id: number, name: string) => {
     console.error(error)
   } finally {
     isLoadingToDelete.value = false
+    editingId = null
   }
 }
 
@@ -178,10 +179,15 @@ const setToShare = (guest: Guest) => {
                 <button
                   class="btn btn-error join-item disabled:!bg-gray-300 disabled:!text-gray-500"
                   type="button"
-                  @click="handleDeleteGuest(~~guest.id, guest.name)"
-                  :disabled="isLoadingToDelete"
+                  @click="
+                    () => {
+                      editingId = guest.id
+                      handleDeleteGuest(~~guest.id, guest.name)
+                    }
+                  "
+                  :disabled="isLoadingToDelete && editingId === guest.id"
                 >
-                  {{ isLoadingToDelete ? 'Deleting...' : 'Delete' }}
+                  {{ isLoadingToDelete && editingId === guest.id ? 'Deleting...' : 'Delete' }}
                 </button>
               </div>
             </td>
